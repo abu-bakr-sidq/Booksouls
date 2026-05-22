@@ -123,7 +123,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="bookstore-home">
+    <div className="container py-4 bookstore-home">
       <div className="text-center mb-5 p-5 rounded shadow hero-section">
         <h1 className="display-4 fw-bold hero-title">Book Souls</h1>
         <p className="lead hero-subtitle">

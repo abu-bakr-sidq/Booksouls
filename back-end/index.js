@@ -8,23 +8,15 @@ const authRoutes = require("./routes/auth");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const normalizeOrigin = (origin) => String(origin || "").trim().replace(/\/+$/, "");
-
 const allowedOrigins = (process.env.CORS_ORIGIN || "")
   .split(",")
-  .map((origin) => normalizeOrigin(origin))
+  .map((origin) => origin.trim())
   .filter(Boolean);
 
 app.use(
   cors({
     origin(origin, callback) {
-      const normalizedOrigin = normalizeOrigin(origin);
-
-      if (
-        !origin ||
-        allowedOrigins.length === 0 ||
-        allowedOrigins.includes(normalizedOrigin)
-      ) {
+      if (!origin || allowedOrigins.length === 0 || allowedOrigins.includes(origin)) {
         callback(null, true);
         return;
       }

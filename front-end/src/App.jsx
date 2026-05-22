@@ -29,10 +29,10 @@ function App() {
     location.pathname === "/register";
 
   return (
-    <div className="app-root">
+    <div>
       {!hideMenuBar && <MenuBar />}
 
-      <main className={`app-shell ${hideMenuBar ? "app-shell-auth" : "app-shell-app"}`}>
+      <div className="container mt-5">
         <Routes>
           <Route
             path="/"
@@ -144,7 +144,7 @@ function App() {
           />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
-      </main>
+      </div>
     </div>
   );
 }
