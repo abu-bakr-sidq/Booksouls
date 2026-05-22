@@ -1,0 +1,10 @@
+{
+  "name": "bookstore-workspace",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "start": "node scripts/dev.js",
+    "frontend": "npm --prefix front-end run dev",
+    "backend": "npm --prefix back-end run dev"
+  }
+}
