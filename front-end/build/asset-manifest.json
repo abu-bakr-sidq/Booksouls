@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/BookStore-Project/static/css/main.76d68117.css",
+    "main.js": "/BookStore-Project/static/js/main.d1b0a8cd.js",
+    "static/js/453.cbd1b867.chunk.js": "/BookStore-Project/static/js/453.cbd1b867.chunk.js",
+    "static/media/Habib.jpg": "/BookStore-Project/static/media/Habib.10acc6fb65a9185d925c.jpg",
+    "static/media/siddiq.jpg": "/BookStore-Project/static/media/siddiq.b976afc5c1904644c37c.jpg",
+    "static/media/Aqheel.jpg": "/BookStore-Project/static/media/Aqheel.89586088333f0eacd3ea.jpg",
+    "static/media/Ibrahim.jpg": "/BookStore-Project/static/media/Ibrahim.116fdae4e49e58cdcc6d.jpg",
+    "static/media/Bazil.jpg": "/BookStore-Project/static/media/Bazil.d492ecb312551b97acc4.jpg",
+    "static/media/Ashiq.jpg": "/BookStore-Project/static/media/Ashiq.78ede5db0d03975fa8ba.jpg",
+    "index.html": "/BookStore-Project/index.html",
+    "main.76d68117.css.map": "/BookStore-Project/static/css/main.76d68117.css.map",
+    "main.d1b0a8cd.js.map": "/BookStore-Project/static/js/main.d1b0a8cd.js.map",
+    "453.cbd1b867.chunk.js.map": "/BookStore-Project/static/js/453.cbd1b867.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.76d68117.css",
+    "static/js/main.d1b0a8cd.js"
+  ]
+}
