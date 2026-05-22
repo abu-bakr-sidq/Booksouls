@@ -18,7 +18,6 @@ services:
   - type: web
     name: bookstore-frontend
     runtime: static
-    plan: free
     rootDir: front-end
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
