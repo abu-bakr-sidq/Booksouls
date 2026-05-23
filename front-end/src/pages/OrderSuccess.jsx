@@ -1,5 +1,6 @@
 import React from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import "./StorePages.css";
 
 function OrderSuccess() {
   const location = useLocation();
@@ -11,27 +12,8 @@ function OrderSuccess() {
   }
 
   return (
-    <div
-      style={{
-        backgroundColor: "#fef9f4",
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "20px",
-        fontFamily: "'Merriweather', serif",
-      }}
-    >
-      <div
-        style={{
-          backgroundColor: "#fff8e7",
-          borderRadius: "12px",
-          padding: "30px",
-          maxWidth: "500px",
-          textAlign: "center",
-          boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
-        }}
-      >
+    <div className="store-page-shell store-page-shell-centered">
+      <div className="store-page-card success-card text-center">
         <h2 style={{ color: "#8B4513", marginBottom: "10px" }}>
           Your Order is Confirmed!
         </h2>
@@ -62,15 +44,9 @@ function OrderSuccess() {
         </div>
         <button
           onClick={() => navigate("/home")}
+          className="btn store-primary-btn mt-4 px-4 py-2"
           style={{
-            backgroundColor: "#8B4513",
-            color: "white",
-            padding: "10px 20px",
             fontSize: "16px",
-            borderRadius: "8px",
-            marginTop: "20px",
-            border: "none",
-            cursor: "pointer",
           }}
         >
           Return to Home

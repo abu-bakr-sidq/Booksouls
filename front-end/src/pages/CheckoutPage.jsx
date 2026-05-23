@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import "./StorePages.css";
 
 function CheckoutPage() {
   const location = useLocation();
@@ -31,31 +32,26 @@ function CheckoutPage() {
   };
 
   return (
-    <div
-      style={{
-        backgroundColor: "#ffffff",
-        minHeight: "100vh",
-        padding: "40px 0",
-      }}
-    >
-      <div className="container">
+    <div className="store-page-shell">
+      <div className="store-page-container">
         <div className="row g-4 justify-content-center">
           <div className="col-lg-5">
-            <div className="card shadow-lg p-4 h-100" style={{ borderRadius: "10px" }}>
-              <h4 className="mb-3" style={{ color: "#5a3e2b" }}>
+            <div className="store-page-card p-4 h-100">
+              <h4 className="mb-3 store-section-title">
                 Order Summary
               </h4>
-              <img
-                src={book.img}
-                alt={book.title}
-                style={{
-                  width: "100%",
-                  height: "280px",
-                  objectFit: "cover",
-                  borderRadius: "12px",
-                  marginBottom: "16px",
-                }}
-              />
+              <div className="store-image-frame mb-3">
+                <img
+                  src={book.img}
+                  alt={book.title}
+                  style={{
+                    width: "100%",
+                    height: "280px",
+                    objectFit: "cover",
+                    marginBottom: "0",
+                  }}
+                />
+              </div>
               <h5>{book.title}</h5>
               <p className="text-muted mb-2">by {book.author}</p>
               <div className="d-flex justify-content-between">
@@ -74,8 +70,8 @@ function CheckoutPage() {
             </div>
           </div>
           <div className="col-lg-5">
-            <div className="card shadow-lg p-4 mx-auto" style={{ borderRadius: "10px" }}>
-              <h2 className="text-center mb-4" style={{ color: "#5a3e2b" }}>
+            <div className="store-page-card p-4 p-md-5 mx-auto">
+              <h2 className="text-center mb-4 store-section-title">
                 Checkout
               </h2>
               <form onSubmit={handlePayment}>
@@ -108,13 +104,8 @@ function CheckoutPage() {
                 </div>
                 <button
                   type="submit"
-                  className="btn w-100"
+                  className="btn store-primary-btn w-100 py-3"
                   disabled={isSubmitting}
-                  style={{
-                    backgroundColor: "#5a3e2b",
-                    color: "white",
-                    fontWeight: "bold",
-                  }}
                 >
                   {isSubmitting ? "Processing..." : "Pay Now"}
                 </button>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { api } from "../utils/api";
 import { getStoredUser, setStoredUser } from "../utils/auth";
+import "./StorePages.css";
 
 function Settings() {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -113,85 +114,27 @@ function Settings() {
   };
 
   return (
-    <>
-      {/*  Bookstore Theme Styles */}
-      <style>{`
-        body {
-          font-family: 'Georgia', serif;
-          background-color: #fdf6e3;
-        }
-        .settings-card {
-          background: #fffaf3;
-          border: 2px solid #d4b483;
-          border-radius: 10px;
-          padding: 20px;
-          box-shadow: 0 4px 12px rgba(139, 69, 19, 0.15);
-        }
-        .settings-card h5 {
-          color: #f1e4dcff;
-          font-weight: bold;
-          margin-bottom: 15px;
-        }
-        .form-control {
-          border-radius: 6px;
-          border: 1px solid #c1a57b;
-        }
-        .btn-primary {
-          background-color: #8b5e3c;
-          border: none;
-        }
-        .btn-primary:hover {
-          background-color: #6f4a2f;
-        }
-        .btn-info {
-          background-color: #d4b483;
-          border: none;
-          color: #4a2f1b;
-        }
-        .btn-info:hover {
-          background-color: #c1a57b;
-        }
-        .alert-success {
-          background-color: #e0d3b8;
-          color: #4a2f1b;
-          border: none;
-        }
-        .alert-danger {
-          background-color: #f2d0a9;
-          color: #5b3924;
-          border: none;
-        }
-        body.dark-mode {
-          background-color: #3b2a20;
-          color: #eee;
-        }
-        body.dark-mode .settings-card {
-          background: #4a3a2b;
-          border-color: #c1a57b;
-        }
-      `}</style>
+    <div className="store-page-shell">
+      <div className="settings-shell">
+        <div className="store-page-card settings-card">
+          <h2 className="mb-4 store-section-title">Settings</h2>
 
-      <div className="container" style={{ maxWidth: 450, marginTop: 40 }}>
-        <div className="settings-card">
-          <h2 className="mb-4"> Settings</h2>
-
-          {/* Dark mode toggle */}
-          <div className="mb-4">
-            <label htmlFor="darkModeToggle" className="form-label">
-               Dark Mode:
-            </label>
-            <input
-              id="darkModeToggle"
-              type="checkbox"
-              checked={darkMode}
-              onChange={toggleDarkMode}
-              style={{ marginLeft: 10, cursor: "pointer" }}
-            />
+          <div className="settings-block">
+            <div className="settings-inline-toggle">
+              <label htmlFor="darkModeToggle" className="form-label mb-0 fw-bold">
+                Dark Mode
+              </label>
+              <input
+                id="darkModeToggle"
+                type="checkbox"
+                checked={darkMode}
+                onChange={toggleDarkMode}
+              />
+            </div>
           </div>
 
-          {/* Change Email */}
-          <form onSubmit={handleEmailUpdate} className="mb-5">
-            <h5> Update Email</h5>
+          <form onSubmit={handleEmailUpdate} className="settings-block">
+            <h5 className="store-section-title fs-4 mb-3">Update Email</h5>
             <input
               type="email"
               className="form-control mb-3"
@@ -202,7 +145,7 @@ function Settings() {
             />
             <button
               type="submit"
-              className="btn btn-info w-100"
+              className="btn store-secondary-btn w-100"
               disabled={emailLoading}
             >
               {emailLoading ? "Updating..." : "Update Email"}
@@ -215,9 +158,8 @@ function Settings() {
             )}
           </form>
 
-          {/* Change Password */}
-          <form onSubmit={handlePasswordChange}>
-            <h5> Change Password</h5>
+          <form onSubmit={handlePasswordChange} className="settings-block">
+            <h5 className="store-section-title fs-4 mb-3">Change Password</h5>
             <input
               type="password"
               placeholder="Current Password"
@@ -247,7 +189,7 @@ function Settings() {
             />
             <button
               type="submit"
-              className="btn btn-primary w-100"
+              className="btn store-primary-btn w-100"
               disabled={passLoading}
             >
               {passLoading ? "Changing..." : "Change Password"}
@@ -262,7 +204,7 @@ function Settings() {
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

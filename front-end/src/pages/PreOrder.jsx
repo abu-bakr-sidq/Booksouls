@@ -3,6 +3,7 @@ import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom"
 
 import upcomingBooks from "../data/upcomingBooks";
 import { savePreOrder } from "../utils/preorders";
+import "./StorePages.css";
 
 function PreOrder() {
   const { bookId } = useParams();
@@ -53,32 +54,14 @@ function PreOrder() {
   };
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        background: "linear-gradient(135deg, #fdf6e3, #f8e1c4)",
-        padding: "20px",
-        fontFamily: "'Merriweather', serif",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: "900px",
-          width: "100%",
-          backgroundColor: "#fffaf5",
-          borderRadius: "18px",
-          boxShadow: "0 15px 40px rgba(0,0,0,0.15)",
-          overflow: "hidden",
-        }}
-      >
+    <div className="store-page-shell store-page-shell-centered">
+      <div className="store-page-card" style={{ maxWidth: "900px", width: "100%", overflow: "hidden" }}>
         <div className="row g-0">
           <div className="col-md-5">
             <img
               src={book.img}
               alt={book.title}
+              className="preorder-cover"
               style={{
                 width: "100%",
                 height: "100%",
@@ -89,7 +72,7 @@ function PreOrder() {
             />
           </div>
           <div className="col-md-7">
-            <div style={{ padding: "28px" }}>
+            <div className="preorder-copy" style={{ padding: "28px" }}>
               <p
                 style={{
                   textTransform: "uppercase",
@@ -163,18 +146,14 @@ function PreOrder() {
               </div>
 
               {!confirmed ? (
-                <div className="d-grid gap-2 d-md-flex">
+                <div className="transaction-actions">
                   <button
                     onClick={handlePreOrder}
+                    className="store-primary-btn"
                     style={{
                       padding: "12px 24px",
                       fontSize: "1rem",
-                      borderRadius: "8px",
-                      border: "none",
-                      backgroundColor: "#d4a373",
-                      color: "#fff",
                       cursor: "pointer",
-                      fontWeight: "bold",
                       minWidth: "190px",
                     }}
                   >
@@ -182,15 +161,12 @@ function PreOrder() {
                   </button>
                   <button
                     onClick={() => navigate("/home")}
+                    className="store-secondary-btn"
                     style={{
                       padding: "12px 24px",
                       fontSize: "1rem",
-                      borderRadius: "8px",
-                      border: "1px solid #d4a373",
                       backgroundColor: "#fffaf5",
-                      color: "#7b5e46",
                       cursor: "pointer",
-                      fontWeight: "bold",
                       minWidth: "160px",
                     }}
                   >

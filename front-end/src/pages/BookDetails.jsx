@@ -1,36 +1,42 @@
 import React from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
+
 import books from "../data/books";
+import "./BookDetails.css";
+import "./StorePages.css";
 
 function renderStars(rating) {
   const fullStars = Math.floor(rating);
   const halfStar = rating % 1 >= 0.5;
   const stars = [];
 
-  for (let i = 0; i < fullStars; i++) {
+  for (let i = 0; i < fullStars; i += 1) {
     stars.push(
-      <span key={i} style={{ color: "#f5c518", fontSize: "1.2rem" }}>
-        ★
+      <span key={`full-${i}`} style={{ color: "#f5c518", fontSize: "1.2rem" }}>
+        {"\u2605"}
       </span>
     );
   }
+
   if (halfStar) {
     stars.push(
       <span key="half" style={{ color: "#f5c518", fontSize: "1.2rem" }}>
-        ☆
+        {"\u2606"}
       </span>
     );
   }
+
   while (stars.length < 5) {
     stars.push(
       <span
-        key={"empty" + stars.length}
+        key={`empty-${stars.length}`}
         style={{ color: "#ddd", fontSize: "1.2rem" }}
       >
-        ★
+        {"\u2605"}
       </span>
     );
   }
+
   return stars;
 }
 
@@ -38,7 +44,7 @@ function BookDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const book = books.find((b) => b.id === parseInt(id));
+  const book = books.find((item) => item.id === Number.parseInt(id, 10));
 
   if (!book) {
     return (
@@ -51,87 +57,80 @@ function BookDetails() {
     );
   }
 
-  const handleBuy = () => {
-    navigate(`/buy/${book.id}`, { state: { book } });
-  };
-
   return (
-    <div className="container py-4">
-      <button className="btn btn-secondary mb-4" onClick={() => navigate(-1)}>
-        ← Back
-      </button>
+    <div className="book-details-shell">
+      <div className="container py-4 book-details-container">
+        <button
+          className="btn btn-secondary mb-4 book-details-back"
+          onClick={() => navigate(-1)}
+        >
+          Back
+        </button>
 
-      <div className="row">
-        <div className="col-md-5">
-          <img
-            src={book.img}
-            alt={book.title}
-            className="img-fluid rounded shadow-sm"
-            style={{ objectFit: "cover", height: "400px", width: "100%" }}
-          />
-          <h3 className="mt-3">Price: ₹{book.price}</h3>
-          <p>{book.description}</p>
-
-          <button
-            onClick={handleBuy}
-            className="btn btn-success btn-lg mt-3"
-            style={{ width: "100%" }}
-          >
-            Buy Now
-          </button>
-
-          <div className="mt-3">
-            <strong>Rating: </strong> {renderStars(book.rating)} ({book.rating})
-          </div>
-        </div>
-
-        <div className="col-md-7">
-          <h2>{book.title}</h2>
-          <h5 className="text-muted mb-3">by {book.author}</h5>
-
-          <h4>Reviews</h4>
-          <ul
-            className="list-unstyled"
-            style={{ maxHeight: "250px", overflowY: "auto" }}
-          >
-            {book.reviews.map((review) => (
-              <li key={review.id} className="d-flex align-items-center mb-3">
+        <div className="row g-4 align-items-start">
+          <div className="col-lg-5">
+            <div className="book-details-panel">
+              <div className="book-details-media">
                 <img
-                  src={review.profileUrl}
-                  alt={review.user}
-                  style={{
-                    width: 50,
-                    height: 50,
-                    borderRadius: "50%",
-                    objectFit: "cover",
-                    marginRight: "10px",
-                  }}
+                  src={book.img}
+                  alt={book.title}
+                  className="img-fluid rounded shadow-sm book-details-cover"
                 />
-                <div>
-                  <Link
-                    to={review.userLink}
-                    style={{
-                      fontWeight: "600",
-                      color: "#007bff",
-                      textDecoration: "none",
-                    }}
-                  >
-                    {review.user}
-                  </Link>
-                  <p className="mb-0">{review.comment}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
+              </div>
+              <h3 className="book-details-price mt-3">Price: Rs.{book.price}</h3>
+              <p className="book-details-description">{book.description}</p>
 
-          <h4>Related Video</h4>
-          <div className="ratio ratio-16x9">
-            <iframe
-              src={book.videoUrl}
-              title={`${book.title} Video`}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
+              <button
+                onClick={() => navigate(`/buy/${book.id}`, { state: { book } })}
+                className="btn btn-success btn-lg mt-3 w-100 book-details-buy"
+              >
+                Buy Now
+              </button>
+
+              <div className="mt-3 book-details-rating">
+                <strong>Rating: </strong>
+                {renderStars(book.rating)} ({book.rating})
+              </div>
+            </div>
+          </div>
+
+          <div className="col-lg-7">
+            <div className="book-details-panel">
+              <h2 className="book-details-title">{book.title}</h2>
+              <h5 className="text-muted mb-3">by {book.author}</h5>
+
+              <h4 className="book-details-section-title">Reviews</h4>
+              <ul className="list-unstyled book-detail-reviews">
+                {book.reviews.map((review) => (
+                  <li key={review.id} className="book-detail-review">
+                    <img
+                      src={review.profileUrl}
+                      alt={review.user}
+                      className="book-detail-avatar"
+                    />
+                    <div>
+                      <Link
+                        to={review.userLink}
+                        className="book-details-review-link"
+                      >
+                        {review.user}
+                      </Link>
+                      <p className="mb-0">{review.comment}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              <h4 className="book-details-section-title">Related Video</h4>
+              <div className="ratio ratio-16x9 book-details-video">
+                <iframe
+                  src={book.videoUrl}
+                  title={`${book.title} Video`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

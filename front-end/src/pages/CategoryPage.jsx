@@ -1,6 +1,7 @@
-// src/pages/CategoryPage.jsx
 import React from "react";
 import { useParams, Link } from "react-router-dom";
+
+import "./StorePages.css";
 
 const allBooks = [
   {
@@ -177,7 +178,7 @@ const allBooks = [
   {
     id: 25,
     title: "Daring Greatly",
-    author: "Brené Brown",
+    author: "Brene Brown",
     img: "https://m.media-amazon.com/images/I/5176nHPg2IL._SY445_SX342_.jpg",
     rating: 4.4,
     category: "physcology",
@@ -222,7 +223,7 @@ const allBooks = [
   {
     id: 4,
     title: "The Psychology of Money",
-    author: "Rebecca Elliot ",
+    author: "Rebecca Elliot",
     img: "https://m.media-amazon.com/images/I/41ewps63rPL._SY445_SX342_.jpg",
     rating: 5.0,
     category: "physcology",
@@ -230,53 +231,71 @@ const allBooks = [
   },
 ];
 
-const CategoryPage = () => {
+function CategoryPage() {
   const { categoryName } = useParams();
 
-  // ✅ Safe filter: only compare if category exists
   const filteredBooks = allBooks.filter(
     (book) =>
       book.category &&
-      book.category.toLowerCase() === categoryName.toLowerCase()
+      book.category.toLowerCase() === String(categoryName || "").toLowerCase()
   );
 
   return (
-    <div className="container mt-4">
-      <h2 className="mb-4">{categoryName} Books</h2>
-      <div className="row">
-        {filteredBooks.length > 0 ? (
-          filteredBooks.map((book) => (
-            <div className="col-md-3 mb-4" key={book.id}>
-              <div className="card shadow-sm h-100">
-                <img
-                  src={book.img}
-                  className="card-img-top"
-                  alt={book.title}
-                  style={{ height: "250px", objectFit: "cover" }}
-                />
-                <div className="card-body text-center">
-                  <h5 className="card-title">{book.title}</h5>
-                  <p className="card-text text-muted">{book.author}</p>
-                  <p className="mb-1">
-                    ⭐ {book.rating} | ₹{book.price}
-                  </p>
-                  <Link
-                    to={`/buy/${book.id}`}
-                    state={{ book }}
-                    className="btn btn-primary btn-sm"
-                  >
-                    Buy Now
-                  </Link>
+    <div className="store-page-shell">
+      <div className="store-page-container">
+        <div className="store-page-card p-4 p-md-5">
+          <div className="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
+            <div>
+              <p className="text-uppercase small fw-bold mb-2 store-muted">
+                Category Collection
+              </p>
+              <h2 className="store-section-title mb-0">{categoryName} Books</h2>
+            </div>
+            <span className="badge text-bg-dark px-3 py-2 align-self-start align-self-md-center">
+              {filteredBooks.length}
+            </span>
+          </div>
+
+          <div className="row g-4">
+            {filteredBooks.length > 0 ? (
+              filteredBooks.map((book) => (
+                <div className="col-sm-6 col-lg-4 col-xl-3" key={book.id}>
+                  <div className="card shadow-sm h-100 border-0" style={{ borderRadius: "18px" }}>
+                    <img
+                      src={book.img}
+                      className="card-img-top"
+                      alt={book.title}
+                      style={{ height: "250px", objectFit: "cover", borderTopLeftRadius: "18px", borderTopRightRadius: "18px" }}
+                    />
+                    <div className="card-body text-center d-flex flex-column">
+                      <h5 className="card-title">{book.title}</h5>
+                      <p className="card-text text-muted">{book.author}</p>
+                      <p className="mb-3">
+                        {"\u2605"} {book.rating} | Rs.{book.price}
+                      </p>
+                      <Link
+                        to={`/buy/${book.id}`}
+                        state={{ book }}
+                        className="btn store-primary-btn mt-auto"
+                      >
+                        Buy Now
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="col-12">
+                <div className="text-center p-4 rounded-4 border bg-white">
+                  <p className="mb-0">No books found in this category.</p>
                 </div>
               </div>
-            </div>
-          ))
-        ) : (
-          <p>No books found in this category.</p>
-        )}
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
-};
+}
 
 export default CategoryPage;

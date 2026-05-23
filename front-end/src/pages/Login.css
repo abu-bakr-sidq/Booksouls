@@ -1,101 +1,132 @@
-/* Full-screen background with gradient and blur */
-.login-container {
-  height: 100vh;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+.auth-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 3vw, 2rem);
+  background:
+    radial-gradient(circle at top left, rgba(212, 163, 115, 0.28), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(176, 122, 80, 0.22), transparent 30%),
+    linear-gradient(135deg, #fff8ec 0%, #f4dfbd 52%, #d9d8c8 100%);
+  font-family: "Merriweather", serif;
 }
 
-/* Glassmorphism Card */
-.login-card {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(15px);
-  border-radius: 20px;
-  padding: 40px;
-  width: 350px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  color: white;
+.auth-card {
+  width: min(100%, 30rem);
+  background: rgba(255, 250, 245, 0.94);
+  border: 1px solid rgba(212, 163, 115, 0.28);
+  border-radius: 1.75rem;
+  box-shadow: 0 1.25rem 3rem rgba(75, 46, 46, 0.14);
+  padding: clamp(1.5rem, 4vw, 2.6rem);
   text-align: center;
-  animation: fadeIn 0.6s ease-in-out;
+  backdrop-filter: blur(10px);
 }
 
-.login-card h2 {
-  margin-bottom: 10px;
-  font-size: 28px;
-  font-weight: bold;
+.auth-title {
+  margin: 0 0 0.4rem;
+  color: #5a3e2b;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  line-height: 1.08;
 }
 
-.login-subtitle {
-  font-size: 14px;
-  color: #ddd;
-  margin-bottom: 20px;
+.auth-subtitle {
+  margin: 0 0 1.35rem;
+  color: #7b5e46;
+  font-size: 1rem;
 }
 
-.login-message {
-  margin-bottom: 15px;
-  font-weight: bold;
+.auth-message {
+  margin: 0 0 1rem;
+  border-radius: 0.9rem;
+  padding: 0.8rem 1rem;
+  font-weight: 700;
 }
 
-/* Inputs */
-.login-card input {
+.auth-message-success {
+  background: #dcf4e4;
+  color: #1f6a37;
+}
+
+.auth-message-error {
+  background: #fde3dd;
+  color: #b54331;
+}
+
+.auth-form {
+  display: grid;
+  gap: 0.95rem;
+}
+
+.auth-input {
   width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: none;
+  min-height: 3.5rem;
+  padding: 0.95rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid #dfb588;
+  background: #fffdf9;
+  color: #4b2e2e;
+  font: inherit;
   outline: none;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  font-size: 16px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.login-card input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+.auth-input::placeholder {
+  color: #9e8674;
 }
 
-/* Button */
-.login-card button {
+.auth-input:focus {
+  border-color: #c68642;
+  box-shadow: 0 0 0 0.25rem rgba(198, 134, 66, 0.14);
+  transform: translateY(-1px);
+}
+
+.auth-button {
   width: 100%;
-  padding: 12px;
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  min-height: 3.6rem;
   border: none;
-  border-radius: 10px;
-  color: white;
-  font-weight: bold;
+  border-radius: 1rem;
+  background: linear-gradient(90deg, #d4a373, #b8773b);
+  color: #fff;
+  font: inherit;
+  font-weight: 800;
   cursor: pointer;
-  font-size: 16px;
-  transition: 0.3s;
+  box-shadow: 0 0.85rem 1.5rem rgba(184, 119, 59, 0.2);
+  transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
 }
 
-.login-card button:hover {
-  background: linear-gradient(135deg, #00f2fe, #4facfe);
+.auth-button:hover {
+  filter: saturate(1.06);
+  transform: translateY(-1px);
+  box-shadow: 0 1rem 1.8rem rgba(184, 119, 59, 0.24);
 }
 
-/* Footer */
-.login-footer {
-  margin-top: 15px;
-  font-size: 14px;
+.auth-footer {
+  margin: 1.2rem 0 0;
+  color: #7b5e46;
+  font-size: 0.98rem;
 }
 
-.login-footer a {
-  color: #4facfe;
+.auth-link {
+  color: #b07a50;
+  font-weight: 800;
   text-decoration: none;
 }
 
-.login-footer a:hover {
+.auth-link:hover {
   text-decoration: underline;
 }
 
-/* Animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
+@media (max-width: 575.98px) {
+  .auth-shell {
+    padding: 0.9rem;
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
+
+  .auth-card {
+    border-radius: 1.4rem;
+    padding: 1.3rem 1rem 1.45rem;
+  }
+
+  .auth-subtitle,
+  .auth-footer {
+    font-size: 0.94rem;
   }
 }
