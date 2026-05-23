@@ -325,9 +325,18 @@
     width: 100%;
   }
 
+  .books-scroll-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow-x: visible;
+    gap: 1rem;
+    padding: 0.25rem 0 0.5rem;
+  }
+
   .book-card {
-    min-width: 252px;
-    max-width: 252px;
+    min-width: 0;
+    max-width: none;
+    width: 100%;
   }
 
   .book-card-body {
@@ -359,5 +368,9 @@
 
   .category-card-body {
     min-height: 120px;
+  }
+
+  .testimonial-grid .testimonial-card {
+    flex: 1 1 100%;
   }
 }
