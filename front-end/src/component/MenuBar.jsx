@@ -66,7 +66,7 @@ function MenuBar() {
         borderBottom: "1px solid rgba(150,100,50,0.3)",
       }}
     >
-      <div className="container-fluid">
+      <div className="container-fluid menu-shell">
         <Link to="/" className="navbar-brand d-flex align-items-center">
           <img
             src="https://cdn-icons-png.flaticon.com/512/29/29302.png"
@@ -172,7 +172,6 @@ function MenuBar() {
                     background: "rgba(240,230,210,0.95)",
                     borderRadius: "16px",
                     boxShadow: "0 10px 25px rgba(150,100,50,0.3)",
-                    marginTop: "12px",
                     minWidth: "220px",
                     padding: "8px 0",
                     animation: "slideFade 0.25s ease forwards",
@@ -285,6 +284,13 @@ function MenuBar() {
             justify-content: flex-end;
           }
 
+          .menu-shell {
+            width: min(100%, 1440px);
+            margin: 0 auto;
+            padding-left: clamp(0.35rem, 1vw, 0.75rem);
+            padding-right: clamp(0.35rem, 1vw, 0.75rem);
+          }
+
           .profile-trigger {
             max-width: 240px;
           }
@@ -298,8 +304,14 @@ function MenuBar() {
           }
 
           .profile-dropdown {
+            position: absolute !important;
+            top: calc(100% + 12px) !important;
+            right: 0 !important;
+            left: auto !important;
             width: 260px;
+            max-width: min(320px, calc(100vw - 32px));
             border: 1px solid rgba(150,100,50,0.18);
+            overflow: hidden;
           }
 
           @media (max-width: 991.98px) {
