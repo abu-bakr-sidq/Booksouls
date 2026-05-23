@@ -1,10 +1,17 @@
 .bookstore-home {
+  width: min(100%, 1440px);
+  margin: 0 auto;
+  padding: 0 clamp(0.9rem, 2vw, 1.8rem) 2rem;
   color: #4b2e2e;
 }
 
 .hero-section {
   background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
   border-radius: 20px;
+  min-height: 270px;
+  display: grid;
+  align-content: center;
+  padding: clamp(2rem, 4vw, 3.5rem) !important;
 }
 
 .hero-title {
@@ -22,6 +29,7 @@
   background: #fff8f0;
   border: 1px solid #f0e0d6;
   border-radius: 12px;
+  padding: 1.25rem 1.35rem !important;
 }
 
 .toolbar-label {
@@ -37,6 +45,14 @@
   padding: 0.5rem 0.95rem;
   font-weight: 600;
   box-shadow: 0 8px 16px rgba(141, 85, 36, 0.16);
+}
+
+.browse-btn {
+  min-height: 48px;
+  min-width: 164px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .browse-btn:hover,
@@ -72,7 +88,7 @@
   display: flex;
   gap: 20px;
   overflow-x: auto;
-  padding: 10px 4px 14px;
+  padding: 10px 4px 18px;
   scroll-behavior: smooth;
 }
 
@@ -283,6 +299,32 @@
 }
 
 @media (max-width: 767.98px) {
+  .bookstore-home {
+    padding-inline: 0.85rem;
+  }
+
+  .hero-section {
+    min-height: 220px;
+    margin-bottom: 2rem !important;
+  }
+
+  .toolbar-card {
+    align-items: stretch !important;
+  }
+
+  .toolbar-card > div:first-child {
+    width: 100%;
+  }
+
+  .toolbar-card .form-select {
+    width: 100% !important;
+    margin-top: 0.6rem;
+  }
+
+  .browse-btn {
+    width: 100%;
+  }
+
   .book-card {
     min-width: 252px;
     max-width: 252px;
